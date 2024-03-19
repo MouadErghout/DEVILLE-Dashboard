@@ -1,15 +1,10 @@
 from abc import ABC,abstractmethod
 class IPlotData(ABC):
    @abstractmethod
-   def plotdata(self,DataFrame,critere):
+   def compareData(self, DataFrames, criteres):
       pass
-
    @abstractmethod
-   def compareData(self, criteres):
-       pass
-
-   @abstractmethod
-   def nombreDimNOK(self,DataFrame):
+   def plotdata(self,DataFrames,critere):
       pass
 
    @abstractmethod
