@@ -3,8 +3,11 @@ class IFetchData(ABC):
    @abstractmethod
    def selectFiles(self,files):
       pass
+   @abstractmethod
 
-   def selectData(self, criteres):
+   def selectData(self, DataFrames, criteres):
        pass
-   def cleanData(self,DataFrame):
+   @abstractmethod
+
+   def cleanData(self,DataFrames):
       pass
