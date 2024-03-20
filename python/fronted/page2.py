@@ -1,4 +1,5 @@
 from tkinter import *
+from tkinter import Tk, Label, Button, Frame, filedialog
 
 
 class AppWindow:
@@ -18,17 +19,21 @@ class AppWindow:
         label_title = Label(frame, text="Sélectionner l'interface que vous voulez afficher :", font=("Helvetica", 25), bg='#41B77F', fg='white')
         label_title.pack(side=TOP, pady=100)
 
-        button_interface01 = Button(frame, text="Interface 01", font=("Verdana", 20), command=lambda: self.open_interface(1))
+        button_interface01 = Button(frame, text="Interface 01", font=("Verdana", 20), command=lambda: self.select_file_and_open_interface(1))
         button_interface01.pack(padx=5, pady=5)
 
-        button_interface02 = Button(frame, text="Interface 02", font=("Verdana", 20), command=lambda: self.open_interface(2))
+        button_interface02 = Button(frame, text="Interface 02", font=("Verdana", 20), command=lambda: self.select_file_and_open_interface(2))
         button_interface02.pack(padx=5, pady=5)
 
-        button_interface03 = Button(frame, text="Interface 03", font=("Verdana", 20), command=lambda: self.open_interface(3))
+        button_interface03 = Button(frame, text="Interface 03", font=("Verdana", 20), command=lambda: self.select_file_and_open_interface(3))
         button_interface03.pack(padx=5, pady=5)
 
-    def open_interface(self, interface_num):
+    def select_file_and_open_interface(self, interface_num):
+        file_path = filedialog.askopenfilename(filetypes=[("Fichiers Excel", "*.xlsx;*.xlsm")])
+        if file_path:
+            self.open_interface(interface_num, file_path)
 
+    def open_interface(self, interface_num, file_path):
         self.master.withdraw()
 
         new_root = Tk()
@@ -62,5 +67,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-
-
