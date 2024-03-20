@@ -8,7 +8,7 @@ class AppWindow:
         self.master.geometry("1080x720")
         self.master.minsize(900, 480)
         self.master.config(background='#41B77F')
-        self.master.iconbitmap("1707045446052-removebg-preview.ico")
+        self.master.iconbitmap("python/fronted/1707045446052-removebg-preview.ico")
         self.selection_window = None  # Fenêtre de sélection des interfaces
 
     def build_selection_window(self): 
