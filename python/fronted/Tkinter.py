@@ -8,13 +8,13 @@ class AppWindow:
         self.master.geometry("1080x720")
         self.master.minsize(900, 480)
         self.master.config(background='#41B77F')
-        self.master.iconbitmap("1707045446052-removebg-preview.ico")
+        self.master.iconbitmap("python/fronted/1707045446052-removebg-preview.ico")
         
     def build(self):
         label_title = Label(self.master, text="Bienvenue sur l'application", font=("Courier", 40), bg='#41B77F', fg='white')
         label_title.pack(side=TOP, pady=20)
         
-        image = PhotoImage(file="Charger_excell-removebg-preview.png")
+        image = PhotoImage(file="python/fronted/Charger_excell-removebg-preview.png")
         label_image = Label(self.master, image=image, bg='#41B77F')
         label_image.image = image  
         label_image.pack()
@@ -32,7 +32,6 @@ class AppWindow:
         file_path = filedialog.askopenfilename(filetypes=[("Fichiers Excel", "*.xlsx;*.xlsm")])
         if file_path:
             print("Chemin du fichier sélectionné :", file_path)
-            # Vous pouvez ajouter ici le traitement que vous souhaitez effectuer avec le fichier sélectionné
 
 def main():
     window = Tk()
