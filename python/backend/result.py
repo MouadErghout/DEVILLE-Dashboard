@@ -23,9 +23,6 @@ def filter_conformity(dc):
             else:
                 indice_to_move.extend([index, index + 1])
 
-
-
-
     dfConf = dc.loc[indices_to_keep] # conformes
     dfNConf= dc.loc[indice_to_move] # non conformes
         # Affiche toutes les côtes conformes
