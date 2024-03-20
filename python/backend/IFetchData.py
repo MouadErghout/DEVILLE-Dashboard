@@ -1,17 +1,17 @@
 from abc import ABC,abstractmethod
 class IFetchData(ABC):
    @abstractmethod
-   def getDFbySheet(self,files):
+   def getDFbySheet(self,paths):
       pass
 
    @abstractmethod
-   def replace_all(self,df):
+   def replace_all(self):
      pass
    @abstractmethod
-   def select_paired_lines(self,df):
+   def select_paired_lines(self):
      pass
    @abstractmethod
-   def cleanData(self,DataFrames):
+   def cleanData(self):
       pass
 
    @abstractmethod
@@ -19,5 +19,5 @@ class IFetchData(ABC):
       pass
 
    @abstractmethod
-   def filter_conformity(self,dc):
+   def filter_conformity(self):
       pass

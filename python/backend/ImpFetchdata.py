@@ -86,7 +86,7 @@ class ImpFetchData(IFetchData):
         ])
 
     def filter_conformity(self):
-        dcs = {}
+        FilesInfos = {}
         for key, dc in self.dfs.items():
             # Création d'une liste pour les indices des lignes à conserver
             indices_to_keep = []
@@ -109,7 +109,8 @@ class ImpFetchData(IFetchData):
             # Affiche toutes les côtes conformes
             conformes = len(dfConf) / 2
             nonConformes = len(dfNConf) / 2
-        return dfConf, dfNConf, conformes, nonConformes
+            FilesInfos[key] = [dfConf,dfNConf,conformes,nonConformes]
+        return FilesInfos
 
 
 
