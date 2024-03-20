@@ -5,8 +5,8 @@ class ConcreteFetchData(IFetchData):
     def selectFiles(self, files):
         print("Sélection des fichiers :", files)
 
-    def selectData(self, DataFrames, criteres):
-        print("Sélection des données avec critères :", criteres)
+    def selectData(self, DataFrames):
+        print("Sélection des données :")
         # Exemple de manipulation de DataFrames
         for df in DataFrames:
             print(df.head())  # Affichage des premières lignes de chaque DataFrame
