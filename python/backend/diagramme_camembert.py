@@ -1,7 +1,7 @@
 import matplotlib.pyplot as plt
 
 def afficher_diagramme(liste_valeurs):
-    print(liste_valeurs)
+
     if len(liste_valeurs)==2: # longueur liste = 2 signifie on est dans le cas interface 3 car ya que deux valeurs
         labels = ['Nombre de conforme', 'Nombre de non conforme']
     else: # sinon on est dans l'interface 3
