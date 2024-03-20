@@ -10,7 +10,7 @@ def afficher_diagramme(liste_valeurs):
     # Valeurs à représenter dans le diagramme
     sizes = []
     for valeur in liste_valeurs:
-        sizes.append(liste_valeurs)
+        sizes.append(valeur)
 
     # Couleurs pour chaque partie
     colors = ['#ff9999','#66b3ff']
