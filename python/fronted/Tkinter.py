@@ -1,6 +1,8 @@
 from tkinter import *
 from tkinter import filedialog
 
+from python.backend.select_file import select_file
+
 class AppWindow:
     def __init__(self, master):
         self.master = master
@@ -25,13 +27,13 @@ class AppWindow:
         label_subtitle = Label(frame, text="Entrez le/les fichier(s) Excel(s)", font=("Courier", 20), bg='#41B77F', fg='white')
         label_subtitle.pack()
         
-        charge_button = Button(frame, text="Sélectionner le fichier .xlsx/.xlsm", font=("Courier", 20), bg='white', fg='#41B77F', command=self.select_file)
+        charge_button = Button(frame, text="Sélectionner le fichier .xlsx/.xlsm", font=("Courier", 20), bg='white', fg='#41B77F', command=select_file())
         charge_button.pack(pady=20, fill=X)
         
-    def select_file(self):
-        file_path = filedialog.askopenfilename(filetypes=[("Fichiers Excel", "*.xlsx;*.xlsm")])
-        if file_path:
-            print("Chemin du fichier sélectionné :", file_path)
+   # def select_file(self):
+   #     file_path = filedialog.askopenfilename(filetypes=[("Fichiers Excel", "*.xlsx;*.xlsm")])
+    #    if file_path:
+     #       print("Chemin du fichier sélectionné :", file_path) #
 
 def main():
     window = Tk()
