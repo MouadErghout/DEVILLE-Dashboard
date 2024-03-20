@@ -32,7 +32,6 @@ class AppWindow:
         file_path = filedialog.askopenfilename(filetypes=[("Fichiers Excel", "*.xlsx;*.xlsm")])
         if file_path:
             print("Chemin du fichier sélectionné :", file_path)
-            # Vous pouvez ajouter ici le traitement que vous souhaitez effectuer avec le fichier sélectionné
 
 def main():
     window = Tk()
