@@ -1,7 +1,7 @@
 from python.backend.IPlotData import IPlotData
 
 
-class ConcretePlotData(IPlotData):
+class ImpPlotData(IPlotData):
     def plotdata(self, DataFrame, critere):
         print("Tracé des données en fonction du critère :", critere)
         # Exemple de tracé des données à l'aide de DataFrame et du critère
