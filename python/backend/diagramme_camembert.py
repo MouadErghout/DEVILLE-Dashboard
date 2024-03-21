@@ -19,7 +19,10 @@ def afficher_diagramme(liste_valeurs):
     plt.axis('equal')
 
     # Ajout du titre
-    plt.title('Répartition Conforme vs Non Conforme')
+    if len(liste_valeurs) == 2: 
+        plt.title('Répartition Conforme vs Non Conforme')
+    else:
+        plt.title('Comparaison n-1 n')
 
     # Affichage du diagramme
     plt.show()
