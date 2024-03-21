@@ -1,23 +1,19 @@
 import matplotlib.pyplot as plt
 
 def afficher_diagramme(liste_valeurs):
-
-    if len(liste_valeurs)==2: # longueur liste = 2 signifie on est dans le cas interface 3 car ya que deux valeurs
+    if len(liste_valeurs) == 2:  # Cas de deux valeurs
         labels = ['Nombre de conforme', 'Nombre de non conforme']
-    else: # sinon on est dans l'interface 3
+
+    else:  # Autre cas
         labels = ['Conformes n-1, non conformes n', 'Non conformes n-1, non conformes n', 'Non conformes n-1, conformes n']
 
-    # Valeurs à représenter dans le diagramme
-    sizes = []
-    for valeur in liste_valeurs:
-        sizes.append(valeur)
 
     # Couleurs pour chaque partie
-    colors = ['#ff9999','#66b3ff']
+
 
     # Création du diagramme en camembert
     plt.figure(figsize=(7, 7))
-    plt.pie(sizes, labels=labels, colors=colors, autopct='%1.1f%%', startangle=90)
+    plt.pie(liste_valeurs, labels=labels, autopct=lambda p: '{:.0f}'.format(p * sum(liste_valeurs) / 100), startangle=90)
 
     # Égalisation de l'axe pour que le camembert soit rond
     plt.axis('equal')
