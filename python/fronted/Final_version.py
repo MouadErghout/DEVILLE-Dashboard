@@ -1,6 +1,10 @@
 from tkinter import *
 from tkinter import filedialog
 
+from python.backend.clean_data import clean_data
+from python.backend.select_file import getDFs
+
+
 class AppWindow:
     def __init__(self, master):
         self.master = master
@@ -34,6 +38,8 @@ class AppWindow:
             print("Aucun fichier sélectionné.")
             
     def build_interface_selection(self):
+        DFS = getDFs(self.file_paths)
+        CleanDFs = clean_data(DFS)
         self.label_title.pack_forget()
         for widget in self.master.winfo_children():
             widget.destroy()

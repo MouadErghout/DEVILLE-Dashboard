@@ -6,30 +6,6 @@ def check_row(row, nominal, lim_inf, lim_sup):
         for i in range(1, 6)
     ])
 
-def compare_reports(liste_df):
-
-    dr = pd.concat([liste_df[0][1]["N° Cote"],liste_df[1][1]["N° Cote"]], axis=1) # 1er indice : liste des valeurs FOT 10. 2e indice : dataframe Non conforme
-
-    cas1 = 0
-    cas2 = 0
-    cas3 = 0
-
-    indices_cas1 = []
-    indices_cas2 = []
-    indices_cas3 = []
-
-    for index, row in dr.iterrows():
-        if row[0] == row[1]:
-            if pd.notna(row[0]):  # Vérifie que la valeur n'est pas NaN
-                cas2 += 1
-                indices_cas2.append(index)
-        elif pd.isna(row[1]):  # Premier cas : valeur dans la première colonne, NaN dans la seconde
-            cas3 += 1
-            indices_cas3.append(index)
-        elif pd.isna(row[0]):  # Deuxième cas : NaN dans la première colonne, valeur dans la seconde
-            cas1 += 1
-            indices_cas1.append(index)
-    return [cas1,cas2,cas3],indices_cas1,indices_cas2,indices_cas3
 
 def compare_deep(liste_dc,liste_indices_cas): 
     colonnes_a_garder = ["Empreinte",	"Mesure1",	"Mesure2",	"Mesure3",	"Mesure4",	"Mesure5",	"Index"]

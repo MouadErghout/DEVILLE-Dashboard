@@ -1,7 +1,7 @@
 import pandas as pd
 import numpy
 
-def select_file(paths): # Devrait retourner une liste des path, pour pouvoir rendre l'affichage des graphiques et des interfaces dynamique.
+def getDFs(paths): # Devrait retourner une liste des path, pour pouvoir rendre l'affichage des graphiques et des interfaces dynamique.
         liste_df = []
         for p in paths:
             df = pd.read_excel(p,usecols="B,F,I,J,P,Q,s:w,Y", sheet_name="Dimensional report").copy()[21:] # Ouvrir le fichier et ne regarder que les colonnes interessantes + a partir de ligne 21
