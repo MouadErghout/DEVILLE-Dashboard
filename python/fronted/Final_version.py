@@ -1,8 +1,8 @@
 from tkinter import *
 from tkinter import filedialog
 
-from python.backend.clean_data import clean_data
-from python.backend.select_file import getDFs
+from python.backend.Ploting import interface1, interface2, interface3, interface4
+from python.backend.ReportGenerate import RepInterface1
 
 
 class AppWindow:
@@ -14,6 +14,15 @@ class AppWindow:
         self.master.config(background='#41B77F')
         self.master.iconbitmap("./1707045446052-removebg-preview.ico")
         self.file_paths = []
+
+    def select_file(self):
+        self.file_paths = filedialog.askopenfilenames(filetypes=[("Fichiers Excel", "*.xlsx;*.xlsm")])
+        if self.file_paths:
+            for file_path in self.file_paths:
+                print(f"Le chemin du fichier sélectionné est : {file_path}")
+            self.build_interface_selection()
+        else:
+            print("Aucun fichier sélectionné.")
 
     def build(self):
         self.label_title = Label(self.master, text="Bienvenue sur l'application", font=("Courier", 40), bg='#41B77F', fg='white')
@@ -28,18 +37,9 @@ class AppWindow:
         charge_button = Button(frame, text="Sélectionner le(s) fichier(s) .xlsx/.xlsm", font=("Courier", 20), bg='white', fg='#41B77F', command=self.select_file)
         charge_button.pack(pady=20, fill='x')
 
-    def select_file(self):
-        self.file_paths = filedialog.askopenfilenames(filetypes=[("Fichiers Excel", "*.xlsx;*.xlsm")])
-        if self.file_paths:
-            for file_path in self.file_paths:
-                print(f"Le chemin du fichier sélectionné est : {file_path}")
-            self.build_interface_selection()
-        else:
-            print("Aucun fichier sélectionné.")
+
             
     def build_interface_selection(self):
-        DFS = getDFs(self.file_paths)
-        CleanDFs = clean_data(DFS)
         self.label_title.pack_forget()
         for widget in self.master.winfo_children():
             widget.destroy()
@@ -47,29 +47,43 @@ class AppWindow:
         self.label_title = Label(self.master, text="Sélectionner l'interface que vous voulez afficher :", font=("Helvetica", 25), bg='#41B77F', fg='white')
         self.label_title.pack(side=TOP, pady=100)
 
-        button_interface01 = Button(self.master, text="Interface 01", font=("Verdana", 20), command=lambda: self.open_interface(1))
+        button_interface01 = Button(self.master, text="Interface 01", font=("Verdana", 20), command=lambda: self.open_interface(1,self.file_paths))
         button_interface01.pack(padx=5, pady=5)
 
-        button_interface02 = Button(self.master, text="Interface 02", font=("Verdana", 20), command=lambda: self.open_interface(2))
+        button_interface02 = Button(self.master, text="Interface 02", font=("Verdana", 20), command=lambda: self.open_interface(2,self.file_paths))
         button_interface02.pack(padx=5, pady=5)
 
-        button_interface03 = Button(self.master, text="Interface 03", font=("Verdana", 20), command=lambda: self.open_interface(3))
+        button_interface03 = Button(self.master, text="Interface 03", font=("Verdana", 20), command=lambda: self.open_interface(3,self.file_paths))
         button_interface03.pack(padx=5, pady=5)
 
-    def open_interface(self, interface_num):
+        button_interface03 = Button(self.master, text="Interface 04", font=("Verdana", 20),
+                                    command=lambda: self.open_interface(4,self.file_paths))
+        button_interface03.pack(padx=5, pady=5)
+
+    def open_interface(self, interface_num, paths):
         self.label_title.pack_forget()
         for widget in self.master.winfo_children():
             widget.destroy()
 
         if interface_num == 1:
+            df = interface1(paths)
+            
             label = Label(self.master, text="Interface 01 : Comparaison complète des rapports sélectionnés", font=("Helvetica", 20), bg='#41B77F', fg='white' )
             label.pack(pady=20)
         elif interface_num == 2:
+            dict = interface2(paths)
             label = Label(self.master, text="Interface 02 : Nombre de dimensions nok par rapport sélectionné ", font=("Helvetica", 20), bg='#41B77F', fg='white' )
             label.pack()
         elif interface_num == 3:
+            liste_ds = interface3(paths)
             label = Label(self.master, text="Interface 03 : Affichage des conformes et des non conformes ", font=("Helvetica", 20), bg='#41B77F', fg='white' )
             label.pack()
+        else:
+            liste_ds = interface4(paths)
+            label = Label(self.master, text="Interface 04 : Affichage des conformes et des non conformes ",
+                          font=("Helvetica", 20), bg='#41B77F', fg='white')
+            label.pack()
+
 
         button_return = Button(self.master, text="Retour", font=("Courier", 20), command=self.build_interface_selection)
         button_return.pack(side="bottom", pady=20)
