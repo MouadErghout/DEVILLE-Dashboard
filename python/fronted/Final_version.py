@@ -8,7 +8,7 @@ class AppWindow:
         self.master.geometry("1080x720")
         self.master.minsize(900, 480)
         self.master.config(background='#41B77F')
-        self.master.iconbitmap("python/fronted/1707045446052-removebg-preview.ico")
+        self.master.iconbitmap("./1707045446052-removebg-preview.ico")
         self.file_paths = []
 
     def build(self):
@@ -16,7 +16,7 @@ class AppWindow:
         self.label_title.pack(side='top', pady=20)
 
         frame = Frame(self.master, bg='#41B77F')
-        frame.pack(expand='yes')
+        frame.pack(expand=1)
 
         label_subtitle = Label(frame, text="Entrez le/les fichier(s) Excel(s)", font=("Courier", 20), bg='#41B77F', fg='white')
         label_subtitle.pack()

@@ -56,7 +56,7 @@ def compare_reports(liste_df):
 
     for index, row in dr.iterrows():
         if row[0] == row[1]:
-            if pd.notna(row[0]):  # : cas 1 Vérifie que la valeur n'est pas NaN --> Non conformes & Non conformes
+            if pd.notna(row[0]):# : cas 1 Vérifie que la valeur n'est pas NaN --> Non conformes & Non conformes
                 cas1 += 1
                 indices_cas1.append(index)
         elif pd.isna(row[1]):  # cas 2 : valeur dans la première colonne, NaN dans la seconde --> Non conformes & conformes
