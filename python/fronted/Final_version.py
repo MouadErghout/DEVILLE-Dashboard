@@ -41,14 +41,16 @@ class AppWindow:
         self.label_title = Label(self.master, text="Sélectionner l'interface que vous voulez afficher :", font=("Helvetica", 25), bg='#41B77F', fg='white')
         self.label_title.pack(side=TOP, pady=100)
 
-        button_interface01 = Button(self.master, text="Interface 01", font=("Verdana", 20), command=lambda: self.open_interface(1))
-        button_interface01.pack(padx=5, pady=5)
-
-        button_interface02 = Button(self.master, text="Interface 02", font=("Verdana", 20), command=lambda: self.open_interface(2))
-        button_interface02.pack(padx=5, pady=5)
-
-        button_interface03 = Button(self.master, text="Interface 03", font=("Verdana", 20), command=lambda: self.open_interface(3))
-        button_interface03.pack(padx=5, pady=5)
+        num_files = len(self.file_paths)
+        if num_files == 1:
+            button_interface01 = Button(self.master, text="Interface 01", font=("Verdana", 20), command=lambda: self.open_interface(1))
+            button_interface01.pack(padx=5, pady=5)
+            button_interface03 = Button(self.master, text="Interface 03", font=("Verdana", 20), command=lambda: self.open_interface(3))
+            button_interface03.pack(padx=5, pady=5)
+        else:
+            for i in range(1, 5):
+                button = Button(self.master, text=f"Interface 0{i}", font=("Verdana", 20), command=lambda i=i: self.open_interface(i))
+                button.pack(padx=5, pady=5)
 
     def open_interface(self, interface_num):
         self.label_title.pack_forget()
@@ -63,6 +65,9 @@ class AppWindow:
             label.pack()
         elif interface_num == 3:
             label = Label(self.master, text="Interface 03 : Affichage des conformes et des non conformes ", font=("Helvetica", 20), bg='#41B77F', fg='white' )
+            label.pack()
+        elif interface_num == 4: 
+            label = Label(self.master, text="Interface 04 : Suivi de la conformité entre les rapports n-1 et n ", font=("Helvetica", 20), bg='#41B77F', fg='white' )
             label.pack()
 
         button_return = Button(self.master, text="Retour", font=("Courier", 20), command=self.build_interface_selection)
