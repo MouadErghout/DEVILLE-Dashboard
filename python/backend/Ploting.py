@@ -1,8 +1,12 @@
 import pandas as pd
+from matplotlib import pyplot as plt
+from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
+
 from python.backend import select_file
 from python.backend import clean_data
 from python.backend import result
 from python.backend import diagramme_camembert
+from python.backend.ReportGenerate import RepInterface1
 
 
 def interface1(paths):
@@ -25,9 +29,9 @@ def interface1(paths):
 
 
     df = pd.concat(liste_to_concat, axis=1)
-    return df
+    RepInterface1(df)
 
-def interface2(paths):
+def interface2(paths,master):
     ##paths = ["./fot10_copie.xlsx", "./fot11_copie.xlsx", "./fot12_copie.xlsx"]
     dict_nok = {}
     liste_df = select_file.getDFs(paths)
@@ -38,7 +42,26 @@ def interface2(paths):
         print(liste_ds[i][3])
         dict_nok[paths[i]] = liste_ds[i][3]
 
-    return dict_nok
+
+    # Extract keys (file paths) and values (number of dimensions NOK)
+    file_paths = list(dict_nok.keys())
+    dimensions_nok = list(dict_nok.values())
+
+    # Create the figure and axis
+    fig, ax = plt.subplots(figsize=(8, 6))
+
+    # Plot the histogram
+    ax.bar(file_paths, dimensions_nok, color='skyblue')
+    ax.set_xlabel('Fichier Excel')
+    ax.set_ylabel('Nombre de dimensions NOK')
+    ax.set_title('Nombre de dimensions NOK par rapport sélectionné')
+    ax.tick_params(axis='x', rotation=45, labelsize=8)
+    plt.tight_layout()
+
+    # Embed the plot into Tkinter window
+    canvas = FigureCanvasTkAgg(fig, master=master)
+    canvas.draw()
+    canvas.get_tk_widget().pack(fill='both', expand=True)
 
 def interface3(paths):
     liste_df = select_file.getDFs(paths)  # appel methode getDFs

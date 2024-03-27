@@ -1,6 +1,9 @@
 from tkinter import *
 from tkinter import filedialog
 
+from matplotlib import pyplot as plt
+from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
+
 from python.backend.Ploting import interface1, interface2, interface3, interface4
 from python.backend.ReportGenerate import RepInterface1
 
@@ -36,8 +39,6 @@ class AppWindow:
 
         charge_button = Button(frame, text="Sélectionner le(s) fichier(s) .xlsx/.xlsm", font=("Courier", 20), bg='white', fg='#41B77F', command=self.select_file)
         charge_button.pack(pady=20, fill='x')
-
-
             
     def build_interface_selection(self):
         self.label_title.pack_forget()
@@ -67,11 +68,10 @@ class AppWindow:
 
         if interface_num == 1:
             df = interface1(paths)
-            
-            label = Label(self.master, text="Interface 01 : Comparaison complète des rapports sélectionnés", font=("Helvetica", 20), bg='#41B77F', fg='white' )
+            label = Label(self.master, text="un fichier excel récapitulant a été crée dans le repertoire C:/Users/mouad/Documents/reports", font=("Helvetica", 20), bg='#41B77F', fg='white' )
             label.pack(pady=20)
         elif interface_num == 2:
-            dict = interface2(paths)
+            dict = interface2(paths,self.master)
             label = Label(self.master, text="Interface 02 : Nombre de dimensions nok par rapport sélectionné ", font=("Helvetica", 20), bg='#41B77F', fg='white' )
             label.pack()
         elif interface_num == 3:
