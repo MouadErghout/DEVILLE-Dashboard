@@ -1,11 +1,8 @@
 from tkinter import *
 from tkinter import filedialog
 
-from matplotlib import pyplot as plt
-from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
 
 from python.backend.Ploting import interface1, interface2, interface3, interface4
-from python.backend.ReportGenerate import RepInterface1
 
 
 class AppWindow:
@@ -67,26 +64,29 @@ class AppWindow:
             widget.destroy()
 
         if interface_num == 1:
-            df = interface1(paths)
-            label = Label(self.master, text="un fichier excel récapitulant a été crée dans le repertoire C:/Users/mouad/Documents/reports", font=("Helvetica", 20), bg='#41B77F', fg='white' )
+            label = Label(self.master,
+                          text="un fichier excel récapitulant a été crée dans le repertoire C:/Users/mouad/Documents/reports",
+                          font=("Helvetica", 20), bg='#41B77F', fg='white')
             label.pack(pady=20)
+            df = interface1(paths)
         elif interface_num == 2:
+            label = Label(self.master, text="Interface 02 : Nombre de dimensions nok par rapport sélectionné ",
+                          font=("Helvetica", 20), bg='#41B77F', fg='white')
+            label.pack()
             dict = interface2(paths,self.master)
-            label = Label(self.master, text="Interface 02 : Nombre de dimensions nok par rapport sélectionné ", font=("Helvetica", 20), bg='#41B77F', fg='white' )
-            label.pack()
         elif interface_num == 3:
-            liste_ds = interface3(paths)
-            label = Label(self.master, text="Interface 03 : Affichage des conformes et des non conformes ", font=("Helvetica", 20), bg='#41B77F', fg='white' )
+            label = Label(self.master, text="Interface 03 : Affichage des conformes et des non conformes ",
+                          font=("Helvetica", 20), bg='#41B77F', fg='white')
             label.pack()
+            liste_ds = interface3(paths,self.master)
         else:
-            liste_ds = interface4(paths)
             label = Label(self.master, text="Interface 04 : Affichage des conformes et des non conformes ",
                           font=("Helvetica", 20), bg='#41B77F', fg='white')
             label.pack()
-
+            liste_ds = interface4(paths)
 
         button_return = Button(self.master, text="Retour", font=("Courier", 20), command=self.build_interface_selection)
-        button_return.pack(side="bottom", pady=20)
+        button_return.pack(side="top", pady=20)
 
 def main():
     window = Tk()

@@ -1,7 +1,7 @@
 import pandas as pd
 from matplotlib import pyplot as plt
 from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
-
+from tkinter import *
 from python.backend import select_file
 from python.backend import clean_data
 from python.backend import result
@@ -40,7 +40,7 @@ def interface2(paths,master):
 
     for i in range(len(liste_ds)):
         print(liste_ds[i][3])
-        dict_nok[paths[i]] = liste_ds[i][3]
+        dict_nok[i] = liste_ds[i][3]
 
 
     # Extract keys (file paths) and values (number of dimensions NOK)
@@ -63,13 +63,30 @@ def interface2(paths,master):
     canvas.draw()
     canvas.get_tk_widget().pack(fill='both', expand=True)
 
-def interface3(paths):
+def interface3(paths,master):
     liste_df = select_file.getDFs(paths)  # appel methode getDFs
     liste_dc = clean_data.clean_data(liste_df)
     liste_ds = result.filter_conformity(liste_dc)
 
     #print(f"Nombre de côtes conformes : {liste_ds[0][2]}")
     #print(f"Nombre de côtes non conformes : {liste_ds[0][3]}")
+    labels = 'Conformes', 'Non conformes'
+    sizes = [liste_ds[0][2], liste_ds[0][3]]
+    colors = ['gold', 'lightskyblue']
+    explode = (0.1, 0)  # explode 1st slice (i.e. 'Conformes')
+
+    # Plot
+    fig1, ax1 = plt.subplots()
+    ax1.pie(sizes, explode=explode, labels=labels, colors=colors, autopct='%1.1f%%',
+            shadow=True, startangle=140)
+    ax1.axis('equal')  # Equal aspect ratio ensures that pie is drawn as a circle.
+
+    plt.title('Répartition des conformes et des non conformes')
+
+    # Embed the plot into Tkinter window
+    canvas = FigureCanvasTkAgg(fig1, master=master)
+    canvas.draw()
+    canvas.get_tk_widget().pack(side=TOP, fill=BOTH, expand=True)
     return liste_ds
     # print(f"dataframe conforme : {liste_ds[0][0]}")
     # print(f"dataframe non conformes : {liste_ds[0][1]}")
